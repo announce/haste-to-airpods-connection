@@ -4,6 +4,8 @@
 
 Alfred Workflow to manage Bluetooth connection.
 
+![Alfred Launcher](/../main/showcase/alfred-launcher.png?raw=true "airpods-connect")
+
 ## Prerequisite
 
 Verified with:
