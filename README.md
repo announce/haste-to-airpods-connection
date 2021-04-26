@@ -28,7 +28,7 @@ $ brew install bluetoothconnector
 $ BluetoothConnector
 ```
 
-3. Download [haste-to-airpods-connection.alfredworkflow](https://github.com/announce/haste-to-airpods-connection/releases/download/1.0.0/haste-to-airpods-connection.alfredworkflow)
+3. Download the latest **haste.alfredworkflow** file from [Releases](https://github.com/announce/haste-to-airpods-connection/releases)
 3. Click the downloaded file and import the workflow
 3. Type `airpods-` on Alfred. You need to specify the MAC address so that the workflow will remember the one for later use. For instance, the MAC address would look like `00-03-93-a1-01-01`.
 
