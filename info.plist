@@ -86,6 +86,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>BF1B3BF9-34DA-4065-BC73-6BA6F7462BE8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BEA87078-61DC-41F3-98EB-9DA00623A325</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>F06BE5C2-964D-4BA7-8BDD-4A5BC16B0C24</key>
 		<array>
 			<dict>
@@ -184,6 +197,27 @@
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>F06BE5C2-964D-4BA7-8BDD-4A5BC16B0C24</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>connect-airpods</string>
+				<key>subtext</key>
+				<string>If the MAC address is not specified, the workflow reuse the last provided one.</string>
+				<key>text</key>
+				<string>Connect to MAC_ADDRESS={query}</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>BF1B3BF9-34DA-4065-BC73-6BA6F7462BE8</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -350,23 +384,23 @@ say $(${BIN_PATH}/BluetoothConnector $MAC_ADDRESS --status)</string>
 		<key>0B87A990-E63B-43A3-91ED-2D0605688E37</key>
 		<dict>
 			<key>xpos</key>
-			<integer>505</integer>
+			<integer>390</integer>
 			<key>ypos</key>
-			<integer>215</integer>
+			<integer>210</integer>
 		</dict>
 		<key>27F9AF31-0BDC-480B-A579-7ADA9546D89D</key>
 		<dict>
 			<key>xpos</key>
 			<integer>175</integer>
 			<key>ypos</key>
-			<integer>155</integer>
+			<integer>145</integer>
 		</dict>
 		<key>89E99086-0B3A-4A9E-B96C-1B686DE556DA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>875</integer>
+			<integer>655</integer>
 			<key>ypos</key>
-			<integer>380</integer>
+			<integer>395</integer>
 		</dict>
 		<key>9D488312-FCDD-460E-BA77-852A32620503</key>
 		<dict>
@@ -378,37 +412,44 @@ say $(${BIN_PATH}/BluetoothConnector $MAC_ADDRESS --status)</string>
 		<key>B157FBEA-DB3E-4CD5-82FF-B5A6528A6849</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1100</integer>
+			<integer>865</integer>
 			<key>ypos</key>
-			<integer>460</integer>
+			<integer>440</integer>
 		</dict>
 		<key>B4DEEBDF-0D88-4A8E-8A5F-B129EAC3F81D</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1325</integer>
+			<integer>1075</integer>
 			<key>ypos</key>
-			<integer>560</integer>
+			<integer>515</integer>
 		</dict>
 		<key>BEA87078-61DC-41F3-98EB-9DA00623A325</key>
 		<dict>
 			<key>xpos</key>
-			<integer>520</integer>
+			<integer>395</integer>
 			<key>ypos</key>
-			<integer>415</integer>
+			<integer>400</integer>
+		</dict>
+		<key>BF1B3BF9-34DA-4065-BC73-6BA6F7462BE8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>170</integer>
+			<key>ypos</key>
+			<integer>360</integer>
 		</dict>
 		<key>F06BE5C2-964D-4BA7-8BDD-4A5BC16B0C24</key>
 		<dict>
 			<key>xpos</key>
 			<integer>170</integer>
 			<key>ypos</key>
-			<integer>325</integer>
+			<integer>285</integer>
 		</dict>
 		<key>FB27B61B-88FF-41F3-8DB0-53B114B2C049</key>
 		<dict>
 			<key>xpos</key>
-			<integer>515</integer>
+			<integer>410</integer>
 			<key>ypos</key>
-			<integer>585</integer>
+			<integer>555</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -421,8 +462,8 @@ say $(${BIN_PATH}/BluetoothConnector $MAC_ADDRESS --status)</string>
 		<string>MAC_ADDRESS</string>
 	</array>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
-	<string>https://github.com/announce/haste-to-airpods-connection</string>
+	<string>https://github.com/announce/haste-to-airpods-connection/releases</string>
 </dict>
 </plist>
