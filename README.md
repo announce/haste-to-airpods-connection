@@ -27,7 +27,7 @@ $ brew install bluetoothconnector
 $ BluetoothConnector
 ```
 
-3. For the 1st time, you need to specify the MAC address of the target device. The workflow will remember the provided MAC address for later use. The MAC address would look like `00-03-93-a1-01-01`.
+3. For the 1st time, you need to specify the MAC address of the target device via Alfred so that the workflow will remember the provided MAC address for later use. For instance, the MAC address would look like `00-03-93-a1-01-01`.
 
 Here are the keywords available via Alfred:
 
