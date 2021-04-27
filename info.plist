@@ -34,6 +34,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>32AEE30A-10EF-4CE6-BF6E-CA18AE719911</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FB27B61B-88FF-41F3-8DB0-53B114B2C049</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>89E99086-0B3A-4A9E-B96C-1B686DE556DA</key>
 		<array>
 			<dict>
@@ -60,11 +73,13 @@
 				<false/>
 			</dict>
 		</array>
+		<key>AD903E74-E1CE-41E6-A757-61A05870D8B9</key>
+		<array/>
 		<key>B157FBEA-DB3E-4CD5-82FF-B5A6528A6849</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>B4DEEBDF-0D88-4A8E-8A5F-B129EAC3F81D</string>
+				<string>AD903E74-E1CE-41E6-A757-61A05870D8B9</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -224,6 +239,27 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{var:MAC_ADDRESS}</string>
+				<key>title</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>B157FBEA-DB3E-4CD5-82FF-B5A6528A6849</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -288,23 +324,41 @@ volume=$(osascript -e 'output volume of (get volume settings)')</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
+				<key>concurrently</key>
 				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string>{var:MAC_ADDRESS}</string>
-				<key>title</key>
-				<string>{query}</string>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>BIN_PATH="$(/usr/local/bin/brew --prefix)/bin"
+
+swhich-audio () {
+  DEVICE_UID=$(${BIN_PATH}/SwitchAudioSource -a -f cli | awk -F ',' "\$2 == \"output\" &amp;&amp; \$4 ~ /${MAC_ADDRESS}/ { print \$4 }")
+
+  for ((i=0 ; i&lt;${CONNECTION_RETRY_BUDGET} ; i++)); do
+      if [[ "Connected" == $(${BIN_PATH}/BluetoothConnector --status $MAC_ADDRESS) ]]; then
+          ${BIN_PATH}/SwitchAudioSource -u ${DEVICE_UID}
+          break
+      fi
+      sleep ${CONNECTION_INTERVAL_SEC}
+  done
+}
+
+sleep ${CONNECTION_INTERVAL_SEC}
+[[ $OPERATION == "connect" ]] &amp;&amp; swhich-audio
+say $(${BIN_PATH}/BluetoothConnector $MAC_ADDRESS --status)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>B157FBEA-DB3E-4CD5-82FF-B5A6528A6849</string>
+			<string>AD903E74-E1CE-41E6-A757-61A05870D8B9</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -330,33 +384,6 @@ volume=$(osascript -e 'output volume of (get volume settings)')</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>BIN_PATH="$(/usr/local/bin/brew --prefix)/bin"
-
-sleep 2
-
-say $(${BIN_PATH}/BluetoothConnector $MAC_ADDRESS --status)</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>B4DEEBDF-0D88-4A8E-8A5F-B129EAC3F81D</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argument</key>
 				<string>{query}</string>
 				<key>passthroughargument</key>
@@ -373,6 +400,27 @@ say $(${BIN_PATH}/BluetoothConnector $MAC_ADDRESS --status)</string>
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>FB27B61B-88FF-41F3-8DB0-53B114B2C049</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>disconnect-airpods</string>
+				<key>subtext</key>
+				<string>If the MAC address is not specified, the workflow reuse the last provided one.</string>
+				<key>text</key>
+				<string>Disconnect from MAC_ADDRESS={query}</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>32AEE30A-10EF-4CE6-BF6E-CA18AE719911</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -393,10 +441,19 @@ say $(${BIN_PATH}/BluetoothConnector $MAC_ADDRESS --status)</string>
 			<key>xpos</key>
 			<integer>175</integer>
 			<key>ypos</key>
-			<integer>145</integer>
+			<integer>135</integer>
+		</dict>
+		<key>32AEE30A-10EF-4CE6-BF6E-CA18AE719911</key>
+		<dict>
+			<key>xpos</key>
+			<integer>170</integer>
+			<key>ypos</key>
+			<integer>580</integer>
 		</dict>
 		<key>89E99086-0B3A-4A9E-B96C-1B686DE556DA</key>
 		<dict>
+			<key>note</key>
+			<string>Execute the selected operation</string>
 			<key>xpos</key>
 			<integer>655</integer>
 			<key>ypos</key>
@@ -409,19 +466,21 @@ say $(${BIN_PATH}/BluetoothConnector $MAC_ADDRESS --status)</string>
 			<key>ypos</key>
 			<integer>500</integer>
 		</dict>
-		<key>B157FBEA-DB3E-4CD5-82FF-B5A6528A6849</key>
+		<key>AD903E74-E1CE-41E6-A757-61A05870D8B9</key>
 		<dict>
+			<key>note</key>
+			<string>Switch the audio output device</string>
 			<key>xpos</key>
-			<integer>865</integer>
+			<integer>1065</integer>
 			<key>ypos</key>
 			<integer>440</integer>
 		</dict>
-		<key>B4DEEBDF-0D88-4A8E-8A5F-B129EAC3F81D</key>
+		<key>B157FBEA-DB3E-4CD5-82FF-B5A6528A6849</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1075</integer>
+			<integer>850</integer>
 			<key>ypos</key>
-			<integer>515</integer>
+			<integer>395</integer>
 		</dict>
 		<key>BEA87078-61DC-41F3-98EB-9DA00623A325</key>
 		<dict>
@@ -454,6 +513,10 @@ say $(${BIN_PATH}/BluetoothConnector $MAC_ADDRESS --status)</string>
 	</dict>
 	<key>variables</key>
 	<dict>
+		<key>CONNECTION_INTERVAL_SEC</key>
+		<string>2</string>
+		<key>CONNECTION_RETRY_BUDGET</key>
+		<string>10</string>
 		<key>MAC_ADDRESS</key>
 		<string></string>
 	</dict>
@@ -462,7 +525,7 @@ say $(${BIN_PATH}/BluetoothConnector $MAC_ADDRESS --status)</string>
 		<string>MAC_ADDRESS</string>
 	</array>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>2.0.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/announce/haste-to-airpods-connection/releases</string>
 </dict>
