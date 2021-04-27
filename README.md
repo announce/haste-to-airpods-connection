@@ -16,7 +16,7 @@ Verified with:
 Required package:
 
 ```shell
-$ brew install bluetoothconnector
+$ brew install bluetoothconnector switchaudio-osx
 ```
 
 ## Usage
